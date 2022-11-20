@@ -1,0 +1,12 @@
+{{- if .Values.namespace.name }}
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ .Values.namespace.name }}
+{{- if .Values.namespace.annotations }}
+  annotations:
+{{ toYaml .Values.namespace.annotations | indent 4}}
+{{- end }}
+  labels:
+    {{- include "bede-task.labels" . | nindent 4 }}
+{{- end }}
